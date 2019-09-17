@@ -67,7 +67,7 @@ namespace YD
                     }
                     else
                     {
-                        MessageBox.Show("请上传正确格式文本！");
+                        MessageBox.Show("请导入有效的TXT文件");
                     }
                 }
             }
@@ -91,7 +91,6 @@ namespace YD
             }
             catch (Exception ex)
             {
-
                 SaveErrLog(ex.Message);
             }
         }
@@ -112,7 +111,6 @@ namespace YD
             }
             catch (Exception ex)
             {
-
                 SaveErrLog(ex.Message);
             }
         }
@@ -122,6 +120,7 @@ namespace YD
             try
             {
                 Save();
+                MessageBox.Show("添加成功");
             }
             catch (Exception ex)
             {
