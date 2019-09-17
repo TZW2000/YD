@@ -60,12 +60,13 @@
             // 导入文件ToolStripMenuItem
             // 
             this.导入文件ToolStripMenuItem.Name = "导入文件ToolStripMenuItem";
-            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.导入文件ToolStripMenuItem.Text = "导入文件";
             this.导入文件ToolStripMenuItem.Click += new System.EventHandler(this.导入文件ToolStripMenuItem_Click);
             // 
             // 书签ToolStripMenuItem
             // 
+            this.书签ToolStripMenuItem.Enabled = false;
             this.书签ToolStripMenuItem.Name = "书签ToolStripMenuItem";
             this.书签ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.书签ToolStripMenuItem.Text = "书签";
