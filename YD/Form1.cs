@@ -39,28 +39,35 @@ namespace YD
                     List<int> keyNum = new List<int>();
                     Regex reg = new Regex("第(.*?)章");
                     MatchCollection mcs = reg.Matches(baseTxt);
-                    string[] list = reg.Split(baseTxt);
-                    List<string> newArray = list.ToList();
-                    newArray.RemoveAt(0);
-                    foreach (Match mc in mcs)
+                    if (mcs.Count > 0)
                     {
-                        string t1 = mc.Groups[0].Value;
-                        string title = mc.Groups[1].Value;
-                        allTitle.Add(title);
-                    }
-                    for (int i = 0; i < mcs.Count; i++)
-                    {
-                        string key = (i + 1) + "-" + mcs[i].Groups[0].Value;
-                        keyTxtDic.Add(key, newArray[i * 2 + 1]);
-                        listBox1.Items.Add(key);
-                    }
-                    if (File.Exists(@"C:\Logs\TxtLogs.log"))
-                    {
-                        string ReadMark = File.ReadAllText(@"C:\Logs\TxtLogs.log");
-                        if (!string.IsNullOrEmpty(ReadMark))
+                        string[] list = reg.Split(baseTxt);
+                        List<string> newArray = list.ToList();
+                        newArray.RemoveAt(0);
+                        foreach (Match mc in mcs)
                         {
-                            textBox.Text = keyTxtDic[ReadMark];
+                            string t1 = mc.Groups[0].Value;
+                            string title = mc.Groups[1].Value;
+                            allTitle.Add(title);
                         }
+                        for (int i = 0; i < mcs.Count; i++)
+                        {
+                            string key = (i + 1) + "-" + mcs[i].Groups[0].Value;
+                            keyTxtDic.Add(key, newArray[i * 2 + 1]);
+                            listBox1.Items.Add(key);
+                        }
+                        if (File.Exists(@"C:\Logs\TxtLogs.log"))
+                        {
+                            string ReadMark = File.ReadAllText(@"C:\Logs\TxtLogs.log");
+                            if (!string.IsNullOrEmpty(ReadMark))
+                            {
+                                textBox.Text = keyTxtDic[ReadMark];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("请上传正确格式文本！");
                     }
                 }
             }
@@ -74,6 +81,7 @@ namespace YD
         {
             try
             {
+                书签ToolStripMenuItem.Enabled = true;
                 int index = listBox1.IndexFromPoint(e.X, e.Y);
                 listBox1.SelectedIndex = index;
                 if (listBox1.SelectedIndex != -1)
